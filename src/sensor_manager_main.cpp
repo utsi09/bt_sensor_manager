@@ -13,7 +13,7 @@
 #include "bt_sensor_manager/image_alive_condition.hpp"
 
 using namespace std::chrono_literals;
-//branch test 테스트 브랜치 테스트2-commit
+//branch test 테스트 브랜치 테스트2-commit 2에서수정
 int main(int argc, char** argv)
 {
   rclcpp::init(argc, argv);
