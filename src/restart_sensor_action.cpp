@@ -65,6 +65,8 @@ BT::NodeStatus RestartSensorAction::tick()
     RCLCPP_INFO(rclcpp::get_logger("RestartSensorAction"),
                 "[%s] Subscribing to Image topic: %s", name().c_str(), topic_name.c_str());
   }
+
+  
   else if (sensor_type == "pointcloud2")
   {
     auto callback = [&received](const sensor_msgs::msg::PointCloud2::SharedPtr) {

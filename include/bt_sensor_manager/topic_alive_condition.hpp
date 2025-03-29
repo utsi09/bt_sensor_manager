@@ -8,13 +8,13 @@
 
 using namespace std::chrono_literals;
 
-class TopicAliveCondition : public BT::RosTopicSubNode<sensor_msgs::msg::PointCloud2>
+class TopicAliveCondition : public BT::RosTopicSubNode<sensor_msgs::msg::PointCloud2> //behaviortree_ros2 라이브러리리의 클래스 오버라이드
 {
 public:
   TopicAliveCondition(const std::string & name, const BT::NodeConfig & config, const BT::RosNodeParams & params)
     : BT::RosTopicSubNode<sensor_msgs::msg::PointCloud2>(name, config, params)
   {
-    last_msg_time_ = std::chrono::steady_clock::now();
+    last_msg_time_ = std::chrono::steady_clock::now(); // 일단은 현재 시간으로 초기화화
   }
 
   static BT::PortsList providedPorts()

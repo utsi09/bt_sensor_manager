@@ -2,54 +2,54 @@
   <BehaviorTree ID="MainTree">
     <Sequence name="MonitorAllSensors">
       
-      <!-- ZED Camera Group (3대, 이미지 메시지) -->
+      <!-- ZED Camera Group -->
       <Sequence name="ZEDGroup">
         <Fallback name="ZED0Monitor">
           <ImageAliveCondition topic_name="/zed0/zed_node/left_raw/image_raw_color"/>
-          <RestartSensorAction name="ZED0_Restart" 
-            cmd="ssh wook@192.168.5.3 'source /home/wook/ros2_ws/install/setup.bash && ros2 launch zed_ros_driver zed.launch.py serial:=16300 &'"
+          <RestartSensorAction name="ZED0_Restart"
+            cmd="ssh wook@192.168.5.3 'pkill -f &quot;zed.launch.py serial:=16300&quot;; sleep 5; source /home/wook/ros2_ws/install/setup.bash && ros2 launch zed_ros_driver zed.launch.py serial:=16300 &'"
             topic_name="/zed0/zed_node/left_raw/image_raw_color"
             sensor_type="image"/>
         </Fallback>
         <Fallback name="ZED1Monitor">
           <ImageAliveCondition topic_name="/zedx1/zed_node/left_raw/image_raw_color"/>
-          <RestartSensorAction name="ZED1_Restart" 
-            cmd="ssh wook@192.168.5.3 'source /home/wook/ros2_ws/install/setup.bash && ros2 launch zed_ros_driver zed.launch.py serial:=40099611 &'"
+          <RestartSensorAction name="ZED1_Restart"
+            cmd="ssh wook@192.168.5.3 'pkill -f &quot;zed.launch.py serial:=40099611&quot;; sleep 5; source /home/wook/ros2_ws/install/setup.bash && ros2 launch zed_ros_driver zed.launch.py serial:=40099611 &'"
             topic_name="/zedx1/zed_node/left_raw/image_raw_color"
             sensor_type="image"/>
         </Fallback>
         <Fallback name="ZED2Monitor">
           <ImageAliveCondition topic_name="/zedx2/zed_node/left_raw/image_raw_color"/>
-          <RestartSensorAction name="ZED2_Restart" 
-            cmd="ssh wook@192.168.5.3 'source /home/wook/ros2_ws/install/setup.bash && ros2 launch zed_ros_driver zed.launch.py serial:=48401972 &'"
+          <RestartSensorAction name="ZED2_Restart"
+            cmd="ssh wook@192.168.5.3 'pkill -f &quot;zed.launch.py serial:=48401972&quot;; sleep 5; source /home/wook/ros2_ws/install/setup.bash && ros2 launch zed_ros_driver zed.launch.py serial:=48401972 &'"
             topic_name="/zedx2/zed_node/left_raw/image_raw_color"
             sensor_type="image"/>
         </Fallback>
       </Sequence>
       
-      <!-- OAK-D Camera Group (2대, 이미지 메시지) -->
+      <!-- OAK-D Camera Group -->
       <Sequence name="OAKGroup">
         <Fallback name="Oak1Monitor">
           <ImageAliveCondition topic_name="/oak1/oak/rgb/image_raw"/>
-          <RestartSensorAction name="Oak1_Restart" 
-            cmd="ssh wook@192.168.5.2 'source /home/wook/ros2_ws/install/setup.bash && ros2 launch oak_multi_launch oak_launch.py camera_name:=oak1 &'"
+          <RestartSensorAction name="Oak1_Restart"
+            cmd="ssh wook@192.168.5.2 'pkill -f &quot;oak_launch.py camera_name:=oak1&quot;; sleep 5; source /home/wook/ros2_ws/install/setup.bash && ros2 launch oak_multi_launch oak_launch.py camera_name:=oak1 &'"
             topic_name="/oak1/oak/rgb/image_raw"
             sensor_type="image"/>
         </Fallback>
         <Fallback name="Oak2Monitor">
           <ImageAliveCondition topic_name="/oak2/oak/rgb/image_raw"/>
-          <RestartSensorAction name="Oak2_Restart" 
-            cmd="ssh wook@192.168.5.2 'source /home/wook/ros2_ws/install/setup.bash && ros2 launch oak_multi_launch oak_launch.py camera_name:=oak2 &'"
+          <RestartSensorAction name="Oak2_Restart"
+            cmd="ssh wook@192.168.5.2 'pkill -f &quot;oak_launch.py camera_name:=oak2&quot;; sleep 5; source /home/wook/ros2_ws/install/setup.bash && ros2 launch oak_multi_launch oak_launch.py camera_name:=oak2 &'"
             topic_name="/oak2/oak/rgb/image_raw"
             sensor_type="image"/>
         </Fallback>
       </Sequence>
       
-      <!-- Hesai LiDAR (포인트 클라우드) -->
+      <!-- Hesai LiDAR -->
       <Fallback name="LidarMonitor">
         <TopicAliveCondition topic_name="/lidar_points"/>
-        <RestartSensorAction name="Lidar_Restart" 
-          cmd="ssh wook@192.168.5.2 'source /home/wook/ros2_ws/install/setup.bash && ros2 launch hesai_ros_driver start.py &'"
+        <RestartSensorAction name="Lidar_Restart"
+          cmd="ssh wook@192.168.5.2 'pkill -f &quot;hesai_ros_driver start.py&quot;; sleep 5; source /home/wook/ros2_ws/install/setup.bash && ros2 launch hesai_ros_driver start.py &'"
           topic_name="/lidar_points"
           sensor_type="pointcloud2"/>
       </Fallback>
